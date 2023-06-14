@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+  <div class="page__banner" data-background="{% static 'img/page-banner/banner-1.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="page__banner-title">
+            <h1>Детали о номере</h1>
+            <div class="page__banner-title-menu">
+              <ul>
+                <li><a href="{% url 'core:home' %}">Главная</a></li>
+                <li><span>-</span><a href="{% url 'rooms:room_list' %}">Номера</a></li>
+                <li><span>-</span>О номере</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner End -->
+  <!-- Room Details Start -->
+  <div class="room__details section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 lg-mb-30">
+          <div class="all__sidebar">
+            <div class="all__sidebar-item">
+              <h5>Стоимость</h5>
+              <div class="all__sidebar-item-price">
+                <ul>
+                  <li><i class="fal fa-users"></i>({{ room.max_adults }}) взрослых</li>
+                  {% if room.max_children %}
+                    <li><i class="fal fa-users"></i>({{ room.max_children }}) детей</li>
+                  {% endif %}
+                </ul>
+                <h4>{{ room.price|intcomma }} ₽<span>/Ночь</span></h4>
+                <a class="theme-btn"
+                   href="{% url 'rooms:book_room' %}">Забронировать<i
+                    class="fal fa-long-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="all__sidebar-item">
+              <h5>Категория</h5>
+              <div class="all__sidebar-item-category">
+                <ul>
+                  <li><a href="{% url 'rooms:room_list' %}/?"><i
+                      class="far fa-angle-double-right"></i>Любой<span>({{ count_rooms|stringformat:"02d" }})</span></a>
+                  </li>
+                  {% for cat in categories %}
+                    {{ category }}
+                    <li><a href="{% url 'rooms:room_list' %}/?category={{ cat.slug }}"
+                           {% if cat.name == room.category.name %}class="active"{% endif %}><i
+                        class="far fa-angle-double-right"></i>{{ cat.name }}<span>({{ cat.num_rooms|stringformat:"02d" }})</span></a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <a class="theme-btn" href="{% url 'rooms:book_room' %}">забронировать<i
+                  class="fal fa-long-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-8">
+          <div class="room__details-right">
+            <div class="room__details-right-content">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <h3 class="mb-25">{{ room.title }}</h3>
+                  <p class="mb-25">{{ room.short_description }}</p>
+                  <p class="m-0">{{ room.description }}</p>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <img src="{{ room.main_image.url }}" alt="{{ room.title }} image" class="img__full">
+                </div>
+              </div>
+
+
+              <div class="row mt-35 mb-35">
+                {% if room.slider_images.all %}
+                  <section class="splide" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                      <ul class="splide__list">
+                        {% for foo in room.slider_images.all %}
+                          <li class="splide__slide"><img src="{{ foo.image.url }}" alt="">
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </section>
+                {% endif %}
+              </div>
+              <h3 class="mb-25">Расположение</h3>
+              <p class="mb-25">Гостиничный комплекс "Жемчуг" находится на территории города Вологда. К
+                услугам гостей
+                бесплатный Wi-Fi и бесплатная частная парковка.</p>
+              <p class="mb-25">До центра города и Вологодского кремля вы доедете за 15 минут.</p>
+              <p class="mb-0">Расстояние до вокзала Вологда составляет 1,5 км</p>
+            </div>
+            <div class="room__details-right-list">
+              <h3>Включённые услуги</h3>
+              <div class="row mt-35">
+                {% for service in room.services.all %}
+                  <div class="col-md-4 col-sm-6 mb-35">
+                    <div class="room__details-right-list-item">
+                      <div class="room__details-right-list-item-icon">
+                        <img src="{{ service.image.url }}" alt="">
+                      </div>
+                      <div class="room__details-right-list-item-title">
+                        <h6>{{ service.title }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="room__details-right-faq mt-50">
+              <div class="room__details-right-faq-item">
+                <div class="room__details-right-faq-item-card">
+                  <div class="room__details-right-faq-item-card-header">
+                    <h5>Как мне забронировать номер через Вашу систему?</h5>
+                    <i class="far fa-long-arrow-up"></i>
+                  </div>
+                  <div class="room__details-right-faq-item-card-header-content active">
+                    <p>Мы предлагаем услуги бронирования номеров он-лайн - в режиме реального времени. Для того чтобы
+                      забронировать номер Вам необходимо: (1) <b>выбрать номер </b>(цену) наиболее подходящую для Вас;
+                      при поиске доступных гостиниц необходимо обязательно указывать <b>количество человек</b>, которые
+                      будут проживать в номере; (2) нажав <b> кнопку "забронировать"</b> вы попадёте на страницу с
+                      информацией о цене и условиях бронирования - внимательно изучите эту информацию; (3) на следующей
+                      странице <b>заполните форму</b>, укажите всю необходимую информацию, подтвердите её; Вам будет
+                      выслано письмо с подробной информацией о брони. </p>
+                  </div>
+                </div>
+              </div>
+              <div class="room__details-right-faq-item">
+                <div class="room__details-right-faq-item-card">
+                  <div class="room__details-right-faq-item-card-header">
+                    <h5>Какую информацию я должен предоставить о себе и зачем?</h5>
+                    <i class="far fa-long-arrow-down"></i>
+                  </div>
+                  <div class="room__details-right-faq-item-card-header-content display-none">
+                    <p>Для успешного бронирования необходимо Ваше имя, e-mail и контактные телефоны.
+                      Данная информация
+                      нужна, чтобы забронировать Вам номер и выслать подтверждение. В зависимости
+                      от выбранного метода
+                      оплаты Вы должны также предоставить дополнительную информацию для
+                      оплаты. <a href="javascript: void()" data-bs-toggle="modal" data-bs-target="#privacy_polite"
+                                 style="color: var(--primary-color)">Политика
+                        персональных данных</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+Структура папок
+Серийный номер тома: 0437-63BD
+C:.
++---env
++---mysite1
+|   +---accounts
+|   |   \---migrations
+|   +---core
+|   |   \---migrations
+|   +---feedback
+|   |   \---migrations
+|   +---mysite1
+|   +---rooms
+|   |   \---migrations
+|   \---templates
+|       +---accounts
+|       +---core
+|       +---registration
+|       \---rooms
++---static
+|   +---css
+|   +---img
+|   |   +---bg
+|   |   +---features
+|   |   |   \---gallery
+|   |   +---hotel
+|   |   +---icon
+|   |   +---luxury
+|   |   +---page-banner
+|   |   \---team
+|   +---js
+|   +---sass
+|   |   +---default
+|   |   \---section
+|   \---webfonts
+\---upload

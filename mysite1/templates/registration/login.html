@@ -1,0 +1,29 @@
+<div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalToggle2" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div class="container p-5 h-100">
+				<div class="row d-flex justify-content-center align-items-center h-100">
+					<h2 class="text-center mb-5">Вход в аккаунт</h2>
+					<button type="button" class="btn-close modal-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+					<form action="{% url 'accounts:login' %}">
+						<div class="mb-4 form-floating">
+							<input type="email" id="emailInput" class="form-control" placeholder="Ваш Email-адрес" />
+							<label for="emailInput" class="form-label">Ваш Email-адрес</label>
+						</div>
+
+						<div class="mb-4 form-floating">
+							<input type="password" id="passwordInput" class="form-control" placeholder="Пароль" />
+							<label for="passwordInput" class="form-label">Пароль</label>
+						</div>
+						<button type="submit" href="profile.html" class="d-block w-100 text-center mb-4 theme-btn">Войти<i class="fal fa-long-arrow-right"></i></button>
+						<div class="text-center">
+							<p class="text-muted mb-2">Нет аккаунта?</p>
+							<a class="theme-border-btn" href="#" data-bs-target="#exampleModal" data-bs-toggle="modal">Регистрация<i class="fal fa-long-arrow-right"></i></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

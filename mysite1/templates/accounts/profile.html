@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="page__banner small" data-background="{% static 'img/page-banner/banner-2.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page__banner-title">
+                        <h1>Профиль</h1>
+                        <div class="page__banner-title-menu">
+                            <ul>
+                                <li><a href="{% url 'core:home' %}">Главная</a></li>
+                                <li><span>-</span>Профиль</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="profile section-padding">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 col-lg-8">
+                    <h2 class="mb-4"><b>{{ user.name }}</b></h2>
+                </div>
+                <div class="col-12 col-lg-4 d-flex align-items-center gap-3">
+                    <div class="form-floating flex-grow-1">
+                        <input class="form-control" id="profile-email" type="email" readonly value="{{ user.email }}"/>
+                        <label for="profile-email" class="form-label">Email</label>
+                    </div>
+                    <a href="{% url 'accounts:logout' %}" title="Выйти из аккаунта"><i class="fad fa-sign-out"
+                                                                                       style="color: var(--primary-color); font-size: 2.5rem;"></i></a>
+                </div>
+            </div>
+            <div class="row gx-5 mb-4">
+                <div class="col-12 col-lg-6 mb-4">
+                    <img src="{% static 'img/hotel/hotel-9.jpg' %}" alt="Hotel Image" class="img__full">
+                </div>
+                <div class="col-12 col-lg-6 mb-4">
+                    <h3 class="mb-4">История:</h3>
+                    <table class="table table-bordered border-light-subtle border-2">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Заезд</th>
+                            <th scope="col">Выезд</th>
+                            <th scope="col">Номер</th>
+                            <th scope="col">Кол-во гостей</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for foo in booking_history reversed %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ foo.check_in|date:"d.m.Y" }}</td>
+                                <td>{{ foo.check_out|date:"d.m.Y" }}</td>
+                                <td>{{ foo.room.title }}</td>
+                                <td>{{ foo.adult_count }} взр.
+                                    {% if foo.child_count %}{{ foo.child_count }} дет. {% endif %} </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {#			<div class="row gx-5">#}
+            {#				<div class="col-12 col-lg-6">#}
+            {#					<div class="balance__container">#}
+            {#						<p>Бонусный счёт:</p>#}
+            {#						<h1 class="fw-bold balance__count">#}
+            {#							2 612 <span class="ms-3 h1"><i class="fal fa-money-bill-wave"></i></span>#}
+            {#						</h1>#}
+            {#					</div>#}
+            {#				</div>#}
+            {#				<div class="col-12 col-lg-6">#}
+            {#					<h4 class="mb-2">Как получать бонусы?</h4>#}
+            {#					<div class="mb-3">#}
+            {#						При бронировании номеров на ваш аккаунт поступают бонусы в размере 10% от общей суммы бронирования. Но#}
+            {#						Вы также можете получать бонусы пользуясь услугами в нашей гостинице:#}
+            {#						<ul>#}
+            {#							<li>до 7% от покупок в ресторане</li>#}
+            {#							<li>от 5% до 15% за пользование бассейном и баней</li>#}
+            {#							<li>до 10% при покупках в магазинах "Сластёна" и "Петровский"</li>#}
+            {#							<li>при участии в акциях, розыгрышах и других мероприятий гостиницы</li>#}
+            {#						</ul>#}
+            {#						Обмен бонусов на рубли производится по следующему курсу: <b>2 бонуса = 1 рубль</b>#}
+            {#					</div>#}
+            {#					<h4 class="mb-2">Как тратить и использовать бонусы?</h4>#}
+            {#					<p class="mb-3">#}
+            {#						Бонусами можно польностью покрыть плату за бронирование номера, оплачивать услуги гостиницы или просто#}
+            {#						вывести их на свою карту. Для подробной информации обращайтесь к администраторам. <br/>#}
+            {#						Обмен бонусов на рубли производится по следующему курсу: <b>2 бонуса = 1 рубль</b>#}
+            {#					</p>#}
+            {#				</div>#}
+            {#			</div>#}
+        </div>
+    </section>
+
+{% endblock %}

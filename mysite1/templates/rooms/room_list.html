@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+	<div class="page__banner" data-background="{% static 'img/page-banner/banner-4.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="page__banner-title">
+						<h1>Выбор номера</h1>
+						<div class="page__banner-title-menu">
+							<ul>
+								<li><a href="{% url 'core:home' %}">Главная</a></li>
+								<li><span>-</span>Номера</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Page Banner End -->
+	<!-- Room Area Start -->
+	<div class="room__area section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-3 col-lg-4">
+					<div class="all__sidebar">
+						<div class="all__sidebar-item">
+							<h5>Категория</h5>
+							<div class="all__sidebar-item-category">
+								<ul>
+									<li><a href="?"><i
+										class="far fa-angle-double-right"></i>Любой<span>({{ rooms.count|stringformat:"02d" }})</span></a>
+									</li>
+									{% for cat in categories_with_counts %}
+										<li><a href="?category={{ cat.slug }}"><i
+											class="far fa-angle-double-right"></i>{{ cat.name }}<span>({{ cat.num_rooms|stringformat:"02d" }})</span></a>
+										</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-9 col-lg-8 lg-mb-30">
+					<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-start">
+						{% for room in rooms %}
+							<div class="col mt-4">
+								<div class="deluxe__two-item scroll-effect">
+									<div class="deluxe__two-item-image">
+										<a href="/rooms/{{ room.slug }}/"><img src="{{ room.main_image.url }}"
+										                                       alt=""></a>
+									</div>
+									<div class="deluxe__two-item-content">
+										<span>{{ room.price|intcomma }} ₽/Ночь</span>
+										<h4><a href="/rooms/{{ room.slug }}/">{{ room.title }}</a></h4>
+										<p>{{ room.short_description }}</p>
+										<div class="deluxe__two-item-content-meta">
+											<ul>
+												<li><i class="fal fa-users"></i>{{ room.max_adults }} взр.</li>
+												{% if room.max_children %}
+													<li><i class="fal fa-users"></i>{{ room.max_children }} дет.</li>
+												{% endif %}
+											</ul>
+										</div>
+										<div class="deluxe__two-item-content-bottom">
+											<a class="simple-btn" href="/rooms/{{ room.slug }}/"><i
+												class="far fa-chevron-right"></i>Подробнее</a>
+											<p><i class="fas fa-star"></i><span>3.9</span>2k</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Room Area End -->
+
+{% endblock %}

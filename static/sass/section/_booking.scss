@@ -1,0 +1,118 @@
+/*==========================================================================
+Booking
+==========================================================================*/
+.booking__area {
+  position: relative;
+  z-index: 1;
+  padding-top: 120px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--heading-color);
+    z-index: -1;
+    opacity: 0.75;
+  }
+
+  &-form {
+    background: var(--white);
+    padding: 60px;
+    box-shadow: 0px 15px 50px rgba(0, 0, 0, .35);
+    margin-bottom: -35px;
+
+    &-check {
+      &-item {
+        width: 100%;
+
+        input {
+          color: var(--color-1);
+          background: transparent;
+          font-family: var(--heading-font);
+          font-weight: 500;
+          font-size: 14px;
+          padding: 0 18px;
+          cursor: pointer;
+
+          &:focus {
+            color: var(--color-1);
+          }
+        }
+
+        &-room {
+          .nice-select {
+            color: var(--color-1);
+            font-family: var(--heading-font);
+            font-weight: 600;
+            font-size: 14px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            width: 100%;
+            border: 1px solid var(--border-color-2);
+            border-radius: 0;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 18px;
+            margin-bottom: 20px;
+
+            &::after {
+              width: 8px;
+              height: 8px;
+              right: 20px;
+              margin-top: -3px;
+              border-bottom: 2px solid var(--primary-color);
+              border-right: 2px solid var(--primary-color);
+              transition: all 0.4s ease-out 0s;
+            }
+
+            .list {
+              padding: 0;
+              margin: 0;
+              border-radius: 0;
+              width: 100%;
+              transition: all 0.4s ease-out 0s;
+
+              li {
+                color: var(--heading-color);
+                font-weight: 600;
+              }
+
+              .option.selected.focus {
+                color: var(--primary-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*==========================================================================
+Booking Two
+==========================================================================*/
+.booking__two {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .booking__area-form {
+    padding: 50px 30px;
+  }
+}
+
+@media (max-width: 359px) {
+  .booking__area-form {
+    padding: 45px 25px;
+  }
+}

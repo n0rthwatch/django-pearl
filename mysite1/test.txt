@@ -1,0 +1,101 @@
+Структура папок
+Серийный номер тома: 0437-63BD
+C:.
+|   db.sqlite3
+|   manage.py
+|   test.txt
+|   
++---accounts
+|   |   admin.py
+|   |   apps.py
+|   |   forms.py
+|   |   models.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           0002_user_name_alter_user_email_alter_user_is_active.py
+|           0003_alter_user_username.py
+|           __init__.py
+|           
++---core
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           __init__.py
+|           
++---feedback
+|   |   admin.py
+|   |   apps.py
+|   |   models.py
+|   |   tests.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           __init__.py
+|           
++---mysite1
+|       asgi.py
+|       settings.py
+|       urls.py
+|       wsgi.py
+|       __init__.py
+|       
++---rooms
+|   |   admin.py
+|   |   apps.py
+|   |   forms.py
+|   |   models.py
+|   |   tests.py
+|   |   urls.py
+|   |   views.py
+|   |   __init__.py
+|   |   
+|   \---migrations
+|           0001_initial.py
+|           0002_room_booked_by_room_check_in_room_check_out_booking.py
+|           0003_booking_adult_count_booking_check_in_and_more.py
+|           0004_booking_guest_name.py
+|           0005_alter_booking_user.py
+|           0006_temporarybooking.py
+|           0007_delete_temporarybooking.py
+|           0008_category_slug.py
+|           0009_alter_category_slug.py
+|           0010_room_price.py
+|           0011_alter_booking_child_count.py
+|           __init__.py
+|           
+\---templates
+    |   base.html
+    |   
+    +---accounts
+    |       authentication.html
+    |       profile.html
+    |       
+    +---core
+    |       about.html
+    |       contact.html
+    |       home.html
+    |       sevices.html
+    |       team.html
+    |       
+    +---registration
+    |       login.html
+    |       register.html
+    |       
+    \---rooms
+            booking_success.html
+            book_room.html
+            room_detail.html
+            room_list.html
+            

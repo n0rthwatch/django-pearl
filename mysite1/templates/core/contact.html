@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <!-- Page Banner Start -->
+  <div class="page__banner" data-background="{% static 'img/page-banner/banner-3.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="page__banner-title">
+            <h1>Контактная информация</h1>
+            <div class="page__banner-title-menu">
+              <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><span>-</span>Контакты</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Banner End -->
+  <!-- Contact Area Start -->
+  <div class="contact__area section-padding pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-5 lg-mb-30">
+          <div class="contact__area-title">
+            <h3 class="mb-25">Связаться с нами</h3>
+            <p></p>
+          </div>
+          <div class="contact__area-info">
+            <div class="contact__area-info-item">
+              <div class="contact__area-info-item-icon">
+                <i class="fal fa-phone-alt"></i>
+              </div>
+              <div class="contact__area-info-item-content">
+                <span>Телефон</span>
+                <h6><a href="tel:+7(902)1905585">+7 (902) 190-55-85</a></h6>
+              </div>
+            </div>
+            <div class="contact__area-info-item">
+              <div class="contact__area-info-item-icon">
+                <i class="fal fa-envelope"></i>
+              </div>
+              <div class="contact__area-info-item-content">
+                <span>Email-адрес</span>
+                <h6><a href="mailto:contact.hotel@pearl.com">contact.hotel@pearl.com</a></h6>
+              </div>
+            </div>
+            <div class="contact__area-info-item">
+              <div class="contact__area-info-item-icon">
+                <i class="fal fa-map-marker-alt"></i>
+              </div>
+              <div class="contact__area-info-item-content">
+                <span>Адрес</span>
+                <h6><a href="#">Россия, Вологда, ул. Первомайская, дом 42</a></h6>
+              </div>
+            </div>
+            <div class="contact__area-info-item">
+              <div class="contact__area-info-item-icon">
+                <i class="fal fa-clock"></i>
+              </div>
+              <div class="contact__area-info-item-content">
+                <span>Режим работы</span>
+                <h6>Круглосуточно</h6>
+              </div>
+            </div>
+          </div>
+          <div class="contact__area-social">
+            <ul>
+              <li><a href="#"><i class="fab fa-vk"></i></a>
+              </li>
+              <li><a href="#"><i class="fas fa-paper-plane"></i></a>
+              </li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a>
+              </li>
+              <li><a href="#"><i class="fas fa-phone"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-7">
+          <div class="contact__area-form">
+            <h3 class="mb-35">Отправить сообщение</h3>
+	          <p id="form-info-text">Заполните данную форму и ожидайте звонок администратора</p>
+            <form action="#" method="post">
+	            {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-6 mb-30">
+                  <label for="id_name" class="mb-2 fw-semibold">Имя и фамилия</label>
+                  <div class="contact__area-form-item">
+                    <i class="fal fa-user"></i>
+                    <input type="text" name="name" id="id_name" placeholder="Пётр Петров" required="required">
+                  </div>
+                </div>
+                <div class="col-sm-6 sm-mb-30">
+                  <label for="id_email" class="mb-2 fw-semibold">Email-адрес</label>
+                  <div class="contact__area-form-item">
+                    <i class="far fa-envelope-open"></i>
+                    <input type="email" name="email" id="id_email" placeholder="petrova@example.ru" required="required">
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-30">
+                  <label for="id_guest_phone" class="mb-2 fw-semibold">Телефон</label>
+                  <div class="contact__area-form-item">
+                    <i class="far fa-phone-alt"></i>
+                    <input type="text" name="phone" id="id_guest_phone" placeholder="8 (___) ___ __-__" required="required">
+                  </div>
+                </div>
+                <div class="col-sm-6 sm-mb-30">
+                  <label for="id_subject" class="mb-2 fw-semibold">Тема сообщения</label>
+                  <div class="contact__area-form-item">
+                    <i class="far fa-address-book"></i>
+                    <input type="text" name="subject" id="id_subject" placeholder="Я бы хотел..." required="required">
+                  </div>
+                </div>
+                <div class="col-sm-12 mb-30">
+                  <label for="id_message" class="mb-2 fw-semibold">Сообщение</label>
+                  <div class="contact__area-form-item">
+                    <i class="far fa-comments"></i>
+                    <textarea name="message" id="id_message" placeholder="Как я могу..." required="required"></textarea>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="contact__area-form-item">
+                    <button class="theme-btn" type="submit">Отправить<i class="fal fa-long-arrow-right"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="contact__area-map section-padding">
+            <div id="contact__yandex-map" style="height: 450px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact Area End -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=3d8be71b-c57d-44c1-8738-f8ec42f50612&lang=ru_RU" type="text/javascript"></script>
+   <!-- Yandex Maps -->
+  <script type="text/javascript">
+    // Функция ymaps.ready() будет вызвана, когда
+    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+    ymaps.ready(init);
+
+    function init() {
+      // Создание карты.
+      let contactsMap = new ymaps.Map('contact__yandex-map', {
+        // Координаты центра карты.
+        // Порядок по умолчанию: «широта, долгота».
+        // Чтобы не определять координаты центра карты вручную,
+        // воспользуйтесь инструментом Определение координат.
+        center: [59.208429, 39.892744],
+        // Уровень масштабирования. Допустимые значения:
+        // от 0 (весь мир) до 19.
+        zoom: 14,
+        controls: ['routeButtonControl'],
+      });
+      let hotelPoint = new ymaps.Placemark([59.208429, 39.892744], {}, {
+        preset: 'islands#redDotIcon'
+      });
+
+      contactsMap.geoObjects.add(hotelPoint)
+    }
+  </script>
+  {% endblock %}

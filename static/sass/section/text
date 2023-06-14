@@ -1,0 +1,19 @@
+PROJECT
+├───env
+├───mysite1
+│   ├───accounts
+│   ├───core
+│   ├───feedback
+│   ├───mysite1
+│   ├───rooms
+│   └───templates
+│       ├───accounts
+│       ├───core
+│       └───rooms
+├───static
+│   ├───css
+│   ├───img
+│   ├───js
+│   ├───sass
+│   └───webfonts
+└───upload

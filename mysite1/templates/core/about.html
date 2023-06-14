@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	<!-- Page Banner Start -->
+	<div class="page__banner" data-background="{% static 'img/page-banner/banner-1.jpg' %}">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="page__banner-title">
+						<h1>О нас</h1>
+						<div class="page__banner-title-menu">
+							<ul>
+								<li><a href="{% url 'core:home' %}">Главная</a></li>
+								<li><span>-</span>О нас</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Page Banner End -->
+	<!-- Company Offers Start -->
+	<div class="offers__area section-padding">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-xl-12">
+					<div class="offers__area-title scroll-effect">
+						<span class="subtitle__one">Скидки</span>
+						<h2>Забронируй номер сейчас и получи скидку 35%</h2>
+						<p>Мы запускаем новую систему бронирования, и благодаря Вам мы хотим её протестировать. В связи с этим мы
+							запускаем акцию: при бронировании номера действует <b> скидка 35% </b> от стоимости! Мы будем рады
+							услышать ваши отзывы о работе системы и нам будет полезна любая информация о вашем опыте использования.
+						</p>
+						<small>Срок действия акции: с 31.12.2022 по 31.12.2023 включительно</small>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="offers__area-image scroll-effect">
+						<img class="img__full" src="{% static 'img/features/offers.jpg' %}" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Company Offers End -->
+	<!-- Services Two Start -->
+	<section class="services__two section-padding pt-0">
+		<div class="container">
+			<div class="row mb-4 justify-content-center">
+				{% for service in services|slice:':8' %}
+					<div class="col-xl-3 col-lg-4 col-md-6 xl-mb-30">
+						<div class="services__two-item scroll-effect">
+							<span>0{{ forloop.counter }}</span>
+							<div class="services__two-item-icon">
+								<img src="{{ service.image.url }}" alt="{{ service.title }}" width="60" height="60">
+							</div>
+							<div class="services__two-item-content">
+								<h4>{{ service.title }}</h4>
+								<p>{{ service.description }}</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Services Two End -->
+	<!-- Gallery Area Start -->
+	<div class="gallery__area section-padding pb-0 overflow-hidden">
+		<div class="container-fluid p-0">
+			<div class="row row-cols-2 row-cols-lg-3 row-cols-xl-4">
+				{% for img in gallery %}
+					<div class="col mb-4 scroll-effect">
+						<div class="gallery__area-item">
+							<a class="img-popup" href="{{ img.image.url }}">
+								<img class="img__full gallery-img"
+								     src="{{ img.image.url }}"
+								     alt="">
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- Gallery Area End -->
+	<!-- Team Area Start -->
+	<section class="team__area section-padding">
+		<div class="container">
+			<div class="row mb-60">
+				<div class="col-xl-12">
+					<div class="team__area-title scroll-effect">
+						<span class="subtitle__one">Наша команда</span>
+						<h2>Профессионалы позаботятся о Вас</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				{% for person in staff|slice:':3' %}
+					<div class="col-12 col-md-6 col-xl-4 xl-mb-30">
+						<div class="team__area-item scroll-effect">
+							<div class="team__area-item-image">
+								<img src="{{ person.picture.url }}" alt="">
+								<div class="team__area-item-image-overlay">
+									<div class="team__area-item-image-overlay-social">
+										<ul>
+											<li><a href="{{ person.s_link_vk }}"><i class="fab fa-vk"></i></a></li>
+											<li><a href="{{ person.s_link_tg }}"><i class="fas fa-paper-plane"></i></a></li>
+											<li><a href="{{ person.s_link_yt }}"><i class="fab fa-youtube"></i></a></li>
+											<li><a href="tel:{{ person.s_link_ph }}"><i class="fas fa-phone"></i></a></li>
+										</ul>
+									</div>
+									<div class="team__area-item-image-overlay-content">
+										<h5>{{ person.name }}</h5>
+										<span>{{ person.position }}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Team Area End -->
+
+{% endblock %}

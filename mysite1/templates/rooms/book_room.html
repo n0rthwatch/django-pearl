@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="page__banner" data-background="{% static 'img/page-banner/banner-1.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="page__banner-title">
+            <h1>Бронирование номера</h1>
+            <div class="page__banner-title-menu">
+              <ul>
+                <li><a href="{% url 'core:home' %}">Главная</a></li>
+                <li><span>-</span>Бронирование</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-5">
+    <h2 class="text-center mb-5">Бронирование номера</h2>
+    <div class="row gx-5">
+      <div class="col-12 col-lg-6">
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-4">
+              <label for="{{ field.id_for_label }}"
+                     class="form-label mb-1 me-2 custom-label d-flex justify-content-between">{{ field.label }}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <span class="text-danger text-opacity-75">{{ error }}</span>
+                  {% endfor %}
+                {% endif %}</label>
+              {% if field.name == 'room_choice' %}
+                <select name="{{ field.name }}" id="{{ field.id_for_label }}"
+                {% for key, value in field.field.widget.attrs.items %}{{ key }}="{{ value }}"
+                {% endfor %}
+                onchange="showRoomInfo(this)">
+                {% for choice in field.field.choices %}
+                  {% if choice.0 %}
+                    <option class="custom-option" value="{{ choice.0 }}"
+                            data-availability="{{ choice.2 }}">{{ choice.1 }}</option>
+                  {% endif %}
+                {% endfor %}
+                </select>
+              {% else %}
+                <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}"
+                       id="{{ field.id_for_label }}" {% if field.name == 'user_name' or field.name == 'user_email' %}
+                       value="{{ field.value }}"
+                {% endif %}
+                {% for key, value in field.field.widget.attrs.items %}{{ key }}="{{ value }}"
+                {% endfor %}>
+              {% endif %}
+              {% if field.help_text %}
+                <p class="form-text">{{ field.help_text|safe }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <p id="check-message" class="fw-normal w-100 pb-3">&nbsp;</p>
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="theme-btn w-100 justify-content-center">Забронировать<i
+                  class="fal fa-long-arrow-right"></i>
+              </button>
+            </div>
+            <div class="col-6" id="price-counter">
+
+            </div>
+            <div class="col-12 py-3">
+              <p class="small"><i class="fas fa-check-circle me-2" style="color: var(--primary-color); opacity: .8"></i>Нажимая на кнопку "Забронировать" Вы принимаете <a href="javascript: void()"
+                                                                                  data-bs-toggle="modal"
+                                                                                  data-bs-target="#privacy_polite"
+                                                                                  style="color: var(--primary-color)">политику
+                персональных данных</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div id="room-info" class="sticky-top z-0" style="top: 100px">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+<script>
+
+</script>

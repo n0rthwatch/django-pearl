@@ -1,0 +1,284 @@
+{% load sass_tags %}
+{% load static %}
+{% load humanize %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/splide.min.css' %}">
+  <link rel="stylesheet" href="{% sass_src 'sass/style.scss' %}" type="text/css">
+  <title>DJANGO</title>
+</head>
+<body>
+<div class="theme-loader">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<header class="header__sticky ">
+  <div class="header__area">
+    <div class="container custom__container">
+      <div class="header__area-menubar">
+        <div class="header__area-menubar-left">
+          <div class="header__area-menubar-left-logo">
+            <a href="{% url 'core:home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            <div class="responsive-menu"></div>
+          </div>
+        </div>
+        <div class="header__area-menubar-right">
+          <div class="header__area-menubar-right-menu menu-responsive">
+            <ul id="mobilemenu">
+              <li><a href="{% url 'core:services' %}">Услуги</a></li>
+              <li><a href="{% url 'rooms:room_list' %}">Номера</a></li>
+              <li><a href="{% url 'core:contact' %}">Контакты</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'accounts:profile' %}">Личный кабинет</a></li>
+              {% else %}
+                <li><a href="{% url 'accounts:authentication' %}">Личный кабинет</a></li>
+              {% endif %}
+            {% if user.is_staff %}
+              <li><a href="/admin/">Админ-панель</a></li>
+            {% endif %}
+            </ul>
+          </div>
+        </div>
+        <div class="header__area-menubar-right-box">
+          <div class="header__area-menubar-right-box-btn">
+            <a class="theme-btn" href="{% url 'rooms:book_room' %}">Забронировать<i
+                class="fal fa-long-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main role="main">
+  {% block content %}
+
+  {% endblock %}
+</main>
+
+<footer class="footer__area">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 col-lg-5 col-md-7 lg-mb-30">
+        <div class="footer__area-widget">
+          <div class="footer__area-widget-about two">
+            <div class="footer__area-widget-about-logo scroll-effect">
+              <a href="{% url 'core:home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </div>
+            <p>Наши партнёры по проведению платежей гарантируют безопасность ваших данных своей мировой
+              репутацией.</p>
+            <div class="footer__area-widget-about-social">
+              <ul>
+                <li><a href="#" class="scroll-effect"><i class="fab fa-vk"></i></a></li>
+                <li><a href="#" class="scroll-effect"><i class="fas fa-paper-plane"></i></a></li>
+                <li><a href="#" class="scroll-effect"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="#" class="scroll-effect"><i class="fas fa-phone"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-5 md-mb-30">
+        <div class="footer__area-widget">
+          <h5>Информация</h5>
+          <div class="footer__area-widget-contact">
+            <div class="footer__area-widget-contact-item">
+              <div class="footer__area-widget-contact-item-icon">
+                <i class="fal fa-map-marked-alt"></i>
+              </div>
+              <div class="footer__area-widget-contact-item-content">
+                <span><a href="#">Россия, Вологда, ул. Первомайская, дом 42</a></span>
+              </div>
+            </div>
+            <div class="footer__area-widget-contact-item">
+              <div class="footer__area-widget-contact-item-icon">
+                <i class="fal fa-envelope-open-text"></i>
+              </div>
+              <div class="footer__area-widget-contact-item-content">
+                <span><a href="mailto:help.info@gamil.com">contact.hotel@pearl.com</a></span>
+              </div>
+            </div>
+            <div class="footer__area-widget-contact-item">
+              <div class="footer__area-widget-contact-item-icon">
+                <i class="fal fa-phone-alt"></i>
+              </div>
+              <div class="footer__area-widget-contact-item-content">
+                <span><a href="tel:+123(458)585568">+7 (902) 190 55-85</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-7">
+        <div class="footer__area-widget d-flex align-items-start flex-column w-100 gap-4">
+          <a href="{% url 'rooms:book_room' %}" class="theme-border-btn scroll-effect justify-content-center w-100">Забронировать<i
+              class="fal fa-long-arrow-right"></i></a>
+          <a href="{% url 'core:services' %}" class="theme-border-btn scroll-effect justify-content-center w-100">Информация<i
+              class="fal fa-long-arrow-right"></i></a>
+          <a href="{% url 'core:contact' %}" class="theme-border-btn scroll-effect justify-content-center w-100">Контакты<i
+              class="fal fa-long-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright__area">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-6 col-lg-6 col-md-7 md-mb-10">
+          <div class="copyright__area-left md-t-center">
+            <p class="mb-2">© 2023 Гостиница <a href="index.html">Жемчуг</a>. Официальный сайт.</p>
+            <p class="small">Сайт спроектирован и разработан Подольским Иваном (<a href="https://github.com/n0rthwatch">n0rthwatch</a>)
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-5">
+          <div class="copyright__area-right t-right md-t-center">
+            <ul>
+              <li><a href="javascript: void()" data-bs-toggle="modal" data-bs-target="#privacy_polite">Политика
+                персональных данных</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="message-container">
+  {% for message in messages %}
+    <div class="message-block {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+  {% endfor %}
+</div>
+
+<div class="scroll-up">
+  <svg class="scroll-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+  </svg>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="privacy_polite" tabindex="-1" aria-labelledby="privacy_polite_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title fs-5" id="privacy_polite_label">
+          <img src="{% static 'img/logo-1.png' %}" alt="Logo" height="30" class="text-center mb-2"
+               style="height: 30px;">
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center mb-4">Политика персональных данных</h4>
+        <p class="mb-5">1. Мы ценим вашу конфиденциальность и стремимся обеспечить защиту ваших персональных данных. В
+          нашей политике персональных данных описаны типы данных, которые мы собираем, как мы их используем и
+          защищаем.</p>
+        <div class="mb-5">
+          2. Мы можем собирать следующую информацию:
+          <ul>
+            <li>имя,</li>
+            <li>адрес электронной почты,</li>
+            <li>номер телефона,</li>
+            <li>данные платежей,</li>
+            <li>и любую другую информацию, которую вы предоставляете нам при бронировании номера гостиницы.</li>
+          </ul>
+          Эти данные необходимы для обработки вашего бронирования и предоставления вам услуг.
+        </div>
+        <div class="mb-5">
+          3. Мы используем ваши данные для подтверждения вашего бронирования, обработки платежей, связи с вами в отношении вашего бронирования и предоставления вам информации о наших услугах и акциях, которые могут вас заинтересовать.
+        </div>
+        <div class="mb-5">
+          4. Мы не продаем, не обмениваем и не арендуем ваши персональные данные третьим сторонам. Однако мы можем раскрывать ваши данные нашим партнерам и поставщикам услуг, которые непосредственно связаны с предоставлением услуг бронирования и обработкой платежей.
+        </div>
+        <div class="mb-5">
+          5. Мы принимаем меры безопасности для защиты ваших персональных данных от несанкционированного доступа, использования или раскрытия. Мы применяем технические и организационные меры безопасности, такие как шифрование данных, использование защищенных соединений и ограниченный доступ к вашим данным.
+        </div>
+        <div class="mb-5">
+          6. Регистрируясь на нашем сайте и предоставляя свои персональные данные, вы соглашаетесь с нашей политикой персональных данных и соглашаетесь на сбор, использование и раскрытие ваших данных в соответствии с этой политикой.
+        </div>
+        <div class="mb-5">
+          7. Мы собираем и обрабатываем персональные данные в соответствии с нормативными актами, в том числе:
+          <ul>
+            <li>Конституция Российской Федерации;</li>
+            <li>Гражданский кодекс Российской Федерации;</li>
+            <li>Трудовой кодекс Российской Федерации;</li>
+            <li>Налоговый кодекс Российской Федерации;</li>
+            <li>Федеральный закон от 08.02.1998 N 14-ФЗ "Об обществах с ограниченной ответственностью";</li>
+            <li>Федеральный закон от 06.12.2011 N 402-ФЗ "О бухгалтерском учете";</li>
+            <li>Федеральный закон от 15.12.2001 N 167-ФЗ "Об обязательном пенсионном страховании в Российской
+              Федерации";
+            </li>
+            <li>Федеральный закон от 29.12.2006 N 255-ФЗ «Об обязательном социальном страховании на случай временной
+              нетрудоспособности и в связи с материнством";
+            </li>
+            <li>Федеральный закон от 24.07.1998 N 125-ФЗ (ред. от 25.02.2022) "Об обязательном социальном страховании от
+              несчастных случаев на производстве и заболеваний";
+            </li>
+            <li>Федеральный закон от 28.03.1998 N 53-ФЗ "О воинской обязанности и военной службе";</li>
+            <li>Федеральный закон от 24.11.1996 N 132-ФЗ "Об основах туристской деятельности в Российской Федерации";
+            </li>
+            <li>Федеральный закон от 18.07.2006 N 109-ФЗ "О миграционном учете иностранных граждан и лиц без гражданства
+              в Российской Федерации";
+            </li>
+            <li>Закон Российской Федерации от 07.02.1992 № 2300-1 «О защите прав потребителей»</li>
+            <li>Постановление Правительства РФ от 15.01.2007 N 9 (ред. от 28.10.2022) "О порядке осуществления
+              миграционного учета иностранных граждан и лиц без гражданства
+            </li>
+            Российской Федерации"
+            <li>Постановление Правительства РФ от 18.11.2020 N 1853 "Об утверждении Правил предоставления гостиничных
+              услуг в Российской Федерации"
+            </li>
+          </ul>
+        </div>
+        <div class="mb-5">
+          Если у вас возникли вопросы, комментарии или запросы относительно нашей политики персональных данных, <b> пожалуйста, свяжитесь с нами </b> по следующей контактной информации:
+          <ul>
+            <li>Телефон: <b>8 (999) 999 99-99</b></li>
+            <li>Телефон: <b>8 (888) 888 88-88</b></li>
+            <li>Email: <b>contact@pearl.ru</b></li>
+            <li>Физический адрес: <b>РФ, г. Вологда, ул. Первомайская, д. 42</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="theme-btn" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+{#<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>#}
+<script src="{% static 'js/splide.min.js' %}"></script>
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'js/skroll.min.js' %}"></script>
+<script>
+    if (document.querySelector('#id_guest_phone')) {
+        document.write('<script src="{% static 'js/jquery.inputmask.min.js' %}"><\/script>')
+    }
+</script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
